@@ -4,12 +4,17 @@ namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\TextUI\XmlConfiguration\File;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+
+/** use bundle photos de profil*/
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @Vich\Uploadable()
  */
 class Utilisateur implements UserInterface
 {
@@ -19,6 +24,18 @@ class Utilisateur implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="property_image")
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -93,7 +110,7 @@ class Utilisateur implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -231,6 +248,19 @@ class Utilisateur implements UserInterface
         $this->campus = $campus;
 
         return $this;
+
+    }/**
+ * @return string|null
+ */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }/**
+ * @param string|null $filename
+ */
+    public function setFilename(?string $filename): void
+    {
+        $this->filename = $filename;
     }
 
 }
