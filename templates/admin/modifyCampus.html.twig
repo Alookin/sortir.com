@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} | ADMIN | Campus{% endblock %}
+
+{% block body %}
+    <h1>Modifier {{ campus.nom }}</h1>
+    <div class="container" style="border: black; border-style: solid; border-radius: 5px;">
+        <div class="row">
+
+                    {{ form_start(registrationForm) }}
+
+                    {{ form_widget(registrationForm) }}
+
+                <button type="submit" class="btn btn-primary">Modifier</button>
+                {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+{% endblock %}

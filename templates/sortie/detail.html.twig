@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ sorties.nom}}
+{% endblock %}
+
+{% block body %}
+    <h2>{{ sorties.nom }} </h2>
+    <div>
+        <p>Date et heure de la sortie : {{ sorties.dateDebut|date("Y-m-d") }}</p>
+        <p>Date limite d'inscription : {{ sorties.dateLimiteInscription|date("Y-m-d") }}</p>
+        <p>Nombre de places : {{ sorties.nbLimiteInscription}}</p>
+        {% if(sorties.duree>1) %}
+            <p> Durée : {{ sorties.duree}} heures</p>
+        {% else %}
+            <p> Durée : {{ sorties.duree}} heure</p>
+        {% endif %}
+        <p>Description et infos : {{ sorties.infosSortie }}</p>
+        <p>Campus : {{ sorties.campus.nom}}</p>
+    </div>
+    <div>
+        <h3>Liste des participants inscrits : </h3>
+        <div>
+            <p> todo: Afficher la liste des participants </p>
+        </div>
+    </div>
+    <button><a href="{{ path('sortie_modify', {'id' : sorties.id }) }}">Modifier</a></button>
+
+{% endblock %}

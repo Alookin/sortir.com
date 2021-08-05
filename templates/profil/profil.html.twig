@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ app.user.prenom }}'s Profil{% endblock %}
+
+{% block body %}
+    <div>
+        <ul>
+            <li>
+                <h3> Prénom : </h3>
+                {{ app.user.prenom }}
+            </li>
+            <li>
+                <h3>Nom : </h3>
+                {{ app.user.nom }}
+            </li>
+            <li>
+                <h3>eMail : </h3>
+                {{ app.user.email }}
+            </li>
+            <li>
+                <h3>Telephone : </h3>
+                {{ app.user.telephone }}
+            </li>
+            <li>
+                <h3>Campus : </h3>
+                {{ app.user.campus.nom }}
+            </li>
+        </ul>
+        <button><a href="{{ path('profil_modify', {'id' : app.user.id }) }}">Modifier</a></button>
+        <button><a href="{{ path('main_home') }}">retour</a></button>
+    </div>
+
+
+
+
+{% endblock %}

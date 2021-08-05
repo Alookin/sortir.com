@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <h2>Date du jour : {{ "now"|date("m/d/Y") }}</h2>
+        <h2>Participant : {{ app.user.pseudo }}</h2>
+    </div>
+    <div class="filtres">
+        <h5>Filtrer les sorties</h5>
+
+    </div>
+    <div>
+        <table style="border-style: solid; border-color: black">
+            <tr>
+                <th>nom de la sortie</th>
+                <th>Date de Début</th>
+                <th>Clôture</th>
+                <th>Inscrits/places</th>
+                <th>Etat</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
+                <th>Actions</th>
+            </tr>
+            {% for s in sorties %}
+                <tr>
+                    <td>{{ s.nom }}</td>
+                    <td>{{ s.dateDebut | date('d/m/Y')}}</td>
+                    <td>{{ s.dateLimiteInscription | date('d/m/Y') }}</td>
+                    <td>{{ s.nbLimiteInscription }}</td>
+                    <td>{{ s.etat.libelle }}</td>
+                    <td><a href="{{ path('sortie_details', {'id': s.id}) }}">Afficher</a></td>
+                    <td><a href="{{ path('sortie_modify', {'id' : s.id }) }}">Modifier</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}
+
+{%  block title %}
+    {{ parent() }} | Sorties
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} | ADMIN | Villes{% endblock %}
+
+{% block body %}
+    <h1>Gérer les Villes</h1>
+    <div class="container" style="border: black; border-style: solid; border-radius: 5px;">
+        <div class="row">
+            <ul class="col-4" style="border-right-style: solid; border-right-color: black">
+                <h4>Villes</h4>
+                {% for v in Villes %}
+                    <li>{{ v.nom }}</li>
+                {% endfor %}
+                <li>
+                    {{ form_start(registrationForm) }}
+
+                    {{ form_row(registrationForm.nom) }}
+                </li>
+            </ul>
+            <ul class="col-4" style="border-right-style: solid; border-right-color: black">
+                <h4>Code Postal</h4>
+                {% for v in Villes %}
+                    <li>{{ v.codePostal }}</li>
+                {% endfor %}
+                <li>
+                    {{ form_row(registrationForm.codePostal) }}
+                </li>
+            </ul>
+            <ul class="col-4">
+                <h4>Actions</h4>
+                {% for v in Villes %}
+                    <a href="{{ path('villes_modify', {'id' : v.id}) }}">modifier</a>
+                    <a href="{{ path('villes_suppress', {'id' : v.id}) }}">Supprimer</a>
+                    <br>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                {{ form_end(registrationForm) }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

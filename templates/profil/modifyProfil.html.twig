@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier {{ utilisateur.pseudo }}</h1>
+    <div class="container" style="border: black; border-style: solid; border-radius: 5px;">
+        <div class="row">
+
+            {{ form_start(profilForm) }}
+
+            {{ form_widget(profilForm) }}
+
+            <button type="submit" class="btn btn-primary">Modifier</button>
+            {{ form_end(profilForm) }}
+
+        </div>
+    </div>
+    {# todo: ne pas afficher le mot de passe hashé(dans ProfilType) #}
+    todo: ne pas afficher le mot de passe hashé(dans ProfilType)
+
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | {{ app.user.pseudo }}
+{% endblock %}
+
+
+

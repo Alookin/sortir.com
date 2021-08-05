@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Nouvelle Sortie{% endblock %}
+
+{% block body %}
+    <h1>Créer une nouvelle Sortie</h1>
+    <h4>Organisateur : {{ app.user.pseudo }}</h4>
+    <h4>Date du jour : {{ "now"|date("m/d/Y") }}</h4>
+    <hr>
+
+    {{ form_start(formSortie) }}
+
+    {{ form_widget(formSortie) }}
+
+    <a href="{{ path('lieu_new') }}" title="Nouveau lieu">Créer un nouveau lieu</a>
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(formSortie) }}
+{% endblock %}

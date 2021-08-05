@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} | ADMIN | Campus{% endblock %}
+
+{% block body %}
+    <h1>Gérer les Campus</h1>
+    <div class="container" style="border: black; border-style: solid; border-radius: 5px;">
+        <div class="row">
+            <ul class="col-6" style="border-right-style: solid; border-right-color: black">
+                <h4>Campus</h4>
+                {% for c in campus %}
+                    <li>{{ c.nom }}</li>
+                {% endfor %}
+                <li>
+                    {{ form_start(registrationForm) }}
+
+                    {{ form_widget(registrationForm) }}
+
+
+                </li>
+            </ul>
+            <ul class="col-6">
+                <h4>Actions</h4>
+                {% for c in campus %}
+                    <a href="{{ path('campus_modify', {'id' : c.id}) }}">modifier</a>
+                    <a href="{{ path('campus_suppress', {'id' : c.id}) }}">Supprimer</a>
+                    <br>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                {{ form_end(registrationForm) }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
